@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="563.0" prefWidth="1102.0" xmlns:fx="http://javafx.com/fxml/1" 
+          fx:controller="notasestudiantes.ControllerEstudiantes">
+    
+    
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Estudiantes"                
+        GridPane.columnIndex="0" GridPane.rowIndex="0">
+    </Label>
+    <TableView fx:id="tableView" prefHeight="349.0"
+               prefWidth="1200.0" 
+               GridPane.rowIndex="1">
+        
+        <columns>
+          <TableColumn fx:id="carné" prefWidth="125.0" text="Carné" />
+          <TableColumn fx:id="nombreApellidos" prefWidth="125.0" text="Nombre y apellidos" />
+          <TableColumn fx:id="correo" prefWidth="125.0" text="Correo" />
+          <TableColumn fx:id="teléfono" prefWidth="125.0" text="Teléfono" />
+          <TableColumn fx:id="nickname" prefWidth="125.0" text="Nickname" />
+          <TableColumn fx:id="tipoEstudiante" prefWidth="125.0" text="Tipo de estudiante" />
+          <TableColumn fx:id="promExámenes" prefWidth="125.0" text="Nota promedio(exámenes)" />
+          <TableColumn fx:id="promQuices" prefWidth="125.0" text="Nota promedio(quices)" />
+          <TableColumn fx:id="promTareas" prefWidth="125.0" text="Nota promedio(tareas)" />
+          <TableColumn fx:id="proyecto1" prefWidth="125.0" text="Nota proyecto #1" />
+          <TableColumn fx:id="proyecto2" prefWidth="125.0" text="Nota proyecto #2" />
+          <TableColumn fx:id="proyecto3" prefWidth="125.0" text="Nota proyecto #3" />
+          <TableColumn fx:id="promedioA" prefWidth="125.0" text="Nota promedio(exámenes,quices,tareas)" />
+          <TableColumn fx:id="promedioB" prefWidth="125.0" text= "Nota promedio(proyectos)"/>
+          <TableColumn fx:id="notaFinal" prefWidth="125.0" text= "Nota final"/>
+        </columns> 
+        
+<items>
+    <FXCollections fx:factory="observableArrayList">
+        
+    </FXCollections>
+</items>
+        
+    </TableView>
+    
+    
+</GridPane>
+    
+    
