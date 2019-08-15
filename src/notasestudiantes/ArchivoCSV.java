@@ -20,21 +20,27 @@ import java.util.logging.Logger;
 /**
  *
  * @author allva
+ *  Aquí se evidencia el concepto de clases pues esta es un molde
+ *  para todo archivo .csv que se desee cargar
  */
-public class ArchivoCSV { /*
-    Aquí se evidencia el concepto de clases pues esta es un molde
-    para todo archivo .csv que se desee cargar
-    */
-    
+public class ArchivoCSV {
     
     public ArchivoCSV (String ruta) {
         this.ruta = ruta;
 
     }
     
-    
     private List<List<String>> records = new ArrayList<List<String>>();
     
+    /**
+     *
+     * @return records
+     * Abre el archivo en formato csv y utilizando las comas como separador
+     * asigna cada valor de la fila a una lista, y cada fila a una lista
+     * creando una lista de listas de Strings
+     * Base de código tomada de https://youtu.be/waXvGUEjTTs ,
+     * https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#split(java.lang.String,%20int)
+     */
     public List ObtenerDatos(){ //Aquí se aprecia un método de la clase para obtener los datos del archivo
 
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {

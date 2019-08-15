@@ -13,11 +13,11 @@ import javafx.beans.property.SimpleDoubleProperty;
 /**
  *
  * @author allva
+ * Se presenta el concepto de herencia
+ * pues EstudiantesTipoA es una hija que hereda métodos y variables de su clase padre
+ * Estudiantes
  */
-public class EstudiantesTipoA extends Estudiantes { /* Se presenta el concepto de herencia
-    pues EstudiantesTipoA es una hija que hereda métodos y variables de su clase padre
-    Estudiantes
-    */
+public class EstudiantesTipoA extends Estudiantes {
     
     private double promA; /*Es encapsulamiento pues mantiene oculto 
     este atributo del resto del proyecto, y solo permite que se use
@@ -25,6 +25,13 @@ public class EstudiantesTipoA extends Estudiantes { /* Se presenta el concepto d
     */
     private SimpleDoubleProperty promedioA;
     
+    /**
+     *
+     * @param lista
+     * Constructor de la clase
+     * EstudiantesTipoA que recibe 
+     * la lista con los datos del estudiante
+     */
     public EstudiantesTipoA(List lista) {
         super(lista);
         this.promedioA = new SimpleDoubleProperty(promA);

@@ -8,6 +8,8 @@ package notasestudiantes;
 /**
  *
  * @author allva
+ * Clase principal del proyecto
+ * posee el método main.
  */
 import java.io.File;
 import java.util.ArrayList;
@@ -16,7 +18,6 @@ import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -27,37 +28,50 @@ public class NotasEstudiantes extends Application{
        //ArchivoCSV ArchivoEstudiantes = new ArchivoCSV("Data.csv");
        List<List<String>> listaEstudiantes;//= ArchivoEstudiantes.ObtenerDatos();
        
+    /**
+     *
+     * @param args
+     * Inicializa el código
+     */
     public static void main (String[] args){ 
 
         launch(args);
     }
     
+    /**
+     *
+     * @return estudiantesObjetos
+     * Crea la cantidad de instancias según sea el archivo
+     * y clasifica según sea tipo A o B, añadiendo estos objetos
+     * a una lista.
+     */
     public List ListaObjetos(){
-  //      System.out.println("algoentró");
+
        List<Object> estudiantesObjetos = new ArrayList<Object>();
        for (int i = 1; i < listaEstudiantes.size(); i++){
 
            if (listaEstudiantes.get(i).get(5).equalsIgnoreCase("A")){
-//System.out.println("algo");
                EstudiantesTipoA EstudianteA = new EstudiantesTipoA(listaEstudiantes.get(i));
                 estudiantesObjetos.add(EstudianteA);
            }
            else if (listaEstudiantes.get(i).get(5).equalsIgnoreCase("B")) {
-//System.out.println("algoB");
               EstudiantesTipoB EstudianteB = new EstudiantesTipoB(listaEstudiantes.get(i)); /*Aquí se crean instancias
                                                                                               de la clase EstudiantesIipoB
               */
               estudiantesObjetos.add(EstudianteB);
            }
-           else{
-               //System.out.println(listaEstudiantes.get(i).get(5));
-           }
       }
-    //   System.out.println(estudiantesObjetos);
        return estudiantesObjetos;
     }
 
-    
+    /*
+     *
+     * Inicia los componentes de la interfaz interactuando 
+     * con las clases como ArchivoCSV, CotronllerEstudiantes,
+     * el archivo FXML y con el método ListaOBjetos.
+     * Código base tomado de https://youtu.be/FLkOX4Eez6o
+     * https://docs.oracle.com/javase/8/javafx/api/javafx/stage/FileChooser.html
+    */
     @Override
     public void start(Stage primaryStage) throws Exception {
        primaryStage.setTitle("Estudiantes");
@@ -74,7 +88,6 @@ public class NotasEstudiantes extends Application{
         ArchivoCSV ArchivoEstudiantes = new ArchivoCSV(ruta);
         listaEstudiantes = ArchivoEstudiantes.ObtenerDatos();
     }
-       System.out.println(listaEstudiantes);
        List listaObjetos = ListaObjetos();
        Scene myScene = (new Scene(loader.load()));
        primaryStage.setScene(myScene);
