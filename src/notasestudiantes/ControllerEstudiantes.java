@@ -88,7 +88,7 @@ public class ControllerEstudiantes implements Initializable {
         promedioA.setCellValueFactory(e -> e.getValue().PromedioA());
         promedioB.setCellValueFactory(e -> e.getValue().PromedioB());
         notaFinal.setCellValueFactory(e -> e.getValue().NotaFinal());
-        System.out.println(promedioB);
+
        tableView.setItems(estudiantes); 
     }   
     
