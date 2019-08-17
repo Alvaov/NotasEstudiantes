@@ -5,6 +5,7 @@
  */
 package notasestudiantes;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,8 +13,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import static notasestudiantes.NotasEstudiantes.getStage;
 
 
 
@@ -61,6 +66,8 @@ public class ControllerEstudiantes implements Initializable {
     private TableColumn<Estudiantes,Number> promedioB;
     @FXML
     private TableColumn<Estudiantes,Number> notaFinal;
+    @FXML
+    private Button button;
     /**
      * Initializa la clase controladora.
      * @param url
@@ -88,6 +95,7 @@ public class ControllerEstudiantes implements Initializable {
         promedioA.setCellValueFactory(e -> e.getValue().PromedioA());
         promedioB.setCellValueFactory(e -> e.getValue().PromedioB());
         notaFinal.setCellValueFactory(e -> e.getValue().NotaFinal());
+        //
 
        tableView.setItems(estudiantes); 
     }   
@@ -101,10 +109,30 @@ public class ControllerEstudiantes implements Initializable {
      * Código base tomado de https://docs.oracle.com/javafx/2/fxml_get_started/fxml_tutorial_intermediate.htm
      */
     public void PasarObjetos(List<Estudiantes> list){
+
         estudiantes.setAll(list);
     }
+    @FXML
+    public void AbrirArchivo(){
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Open Resource File");
+    fileChooser.getExtensionFilters().addAll(
+    new FileChooser.ExtensionFilter("Text Files", "*.csv")
+    );
+
+    File selectedFile = fileChooser.showOpenDialog(NotasEstudiantes.getStage());
+    if (selectedFile != null) {
+        ruta = selectedFile.getAbsolutePath();
+        ArchivoCSV ArchivoEstudiantes = new ArchivoCSV(ruta);
+        listaEstudiantes2 = ArchivoEstudiantes.ObtenerDatos();
+
+        }
+        List listaObjetos = NotasEstudiantes.ListaObjetos(listaEstudiantes2);
+        PasarObjetos(listaObjetos);
+    }
     
-    
+    private List<List<String>> listaEstudiantes2;
+    private String ruta;
     private ObservableList<Estudiantes> estudiantes = FXCollections.observableArrayList( );                                                
     
 }

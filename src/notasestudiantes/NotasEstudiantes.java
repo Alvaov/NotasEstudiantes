@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 public class NotasEstudiantes extends Application{
        String ruta;
 
-       List<List<String>> listaEstudiantes;
+       static List<List<String>> listaEstudiantes;
        
     /**
      *
@@ -47,16 +47,16 @@ public class NotasEstudiantes extends Application{
      * a una lista.
      * @return estudiantesObjetos
      */
-    public List ListaObjetos(){
+    public static List ListaObjetos(List<List<String>> lista ){
 
        List<Object> estudiantesObjetos = new ArrayList<Object>();
-       for (int i = 1; i < listaEstudiantes.size(); i++){
+       for (int i = 1; i < lista.size(); i++){
 
-           if (listaEstudiantes.get(i).get(5).equalsIgnoreCase("A")){
-               EstudiantesTipoA EstudianteA = new EstudiantesTipoA(listaEstudiantes.get(i));
+           if (lista.get(i).get(5).equalsIgnoreCase("A")){
+               EstudiantesTipoA EstudianteA = new EstudiantesTipoA((List) lista.get(i));
                 estudiantesObjetos.add(EstudianteA);
            }
-           else if (listaEstudiantes.get(i).get(5).equalsIgnoreCase("B")) {
+           else if (lista.get(i).get(5).equalsIgnoreCase("B")) {
               EstudiantesTipoB EstudianteB = new EstudiantesTipoB(listaEstudiantes.get(i)); /*Aquí se crean instancias
                                                                                               de la clase EstudiantesIipoB
               */
@@ -74,12 +74,15 @@ public class NotasEstudiantes extends Application{
      * Código base tomado de https://youtu.be/FLkOX4Eez6o
      * https://docs.oracle.com/javase/8/javafx/api/javafx/stage/FileChooser.html
     */
+    
+    private static Stage savedStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
        primaryStage.setTitle("Estudiantes");
+       savedStage = primaryStage;
        FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewEstudiantes.fxml"));
-       
-       FileChooser fileChooser = new FileChooser();
+    FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
     fileChooser.getExtensionFilters().addAll(
          new ExtensionFilter("Text Files", "*.csv")
@@ -90,7 +93,8 @@ public class NotasEstudiantes extends Application{
         ArchivoCSV ArchivoEstudiantes = new ArchivoCSV(ruta);
         listaEstudiantes = ArchivoEstudiantes.ObtenerDatos();
     }
-       List listaObjetos = ListaObjetos();
+       List listaObjetos = ListaObjetos(listaEstudiantes);
+        ArchivoCSV ArchivoEstudiantes = new ArchivoCSV(ruta);
 
        Scene myScene = (new Scene(loader.load()));
        primaryStage.setScene(myScene);
@@ -99,6 +103,9 @@ public class NotasEstudiantes extends Application{
        controller.PasarObjetos(listaObjetos);
        
        primaryStage.show();
+    }
+    public static Stage getStage(){
+        return savedStage;
     }
 }
        

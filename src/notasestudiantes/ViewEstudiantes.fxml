@@ -9,7 +9,7 @@
 <?import javafx.collections.*?> 
 
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
           prefHeight="563.0" prefWidth="1102.0" xmlns:fx="http://javafx.com/fxml/1" 
           fx:controller="notasestudiantes.ControllerEstudiantes">
     
@@ -17,6 +17,7 @@
     <Label style="-fx-font: NORMAL 20 Tahoma;" text="Estudiantes"                
         GridPane.columnIndex="0" GridPane.rowIndex="0">
     </Label>
+
 
     <TableView fx:id="tableView" prefHeight="349.0"
                prefWidth="1200.0" 
@@ -47,6 +48,7 @@
 </items>
         
     </TableView>
+
+    <Button fx:id="button" onAction="#AbrirArchivo" text="Abrir" />    
     
-    
-</GridPane>
+</VBox>
