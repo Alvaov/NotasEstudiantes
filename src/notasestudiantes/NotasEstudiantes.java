@@ -18,6 +18,7 @@ import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -25,8 +26,8 @@ import javafx.stage.Stage;
 
 public class NotasEstudiantes extends Application{
        String ruta;
-       //ArchivoCSV ArchivoEstudiantes = new ArchivoCSV("Data.csv");
-       List<List<String>> listaEstudiantes;//= ArchivoEstudiantes.ObtenerDatos();
+
+       List<List<String>> listaEstudiantes;
        
     /**
      *
@@ -40,10 +41,11 @@ public class NotasEstudiantes extends Application{
     
     /**
      *
-     * @return estudiantesObjetos
-     * Crea la cantidad de instancias según sea el archivo
+     * 
+     * @see Crea la cantidad de instancias según sea el archivo
      * y clasifica según sea tipo A o B, añadiendo estos objetos
      * a una lista.
+     * @return estudiantesObjetos
      */
     public List ListaObjetos(){
 
@@ -84,11 +86,12 @@ public class NotasEstudiantes extends Application{
     );
     File selectedFile = fileChooser.showOpenDialog(primaryStage);
     if (selectedFile != null) {
-        ruta = selectedFile.getName();
+        ruta = selectedFile.getAbsolutePath();
         ArchivoCSV ArchivoEstudiantes = new ArchivoCSV(ruta);
         listaEstudiantes = ArchivoEstudiantes.ObtenerDatos();
     }
        List listaObjetos = ListaObjetos();
+
        Scene myScene = (new Scene(loader.load()));
        primaryStage.setScene(myScene);
 

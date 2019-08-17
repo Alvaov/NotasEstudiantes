@@ -104,6 +104,7 @@ public class ControllerEstudiantes implements Initializable {
         estudiantes.setAll(list);
     }
     
+    
     private ObservableList<Estudiantes> estudiantes = FXCollections.observableArrayList( );                                                
     
 }
