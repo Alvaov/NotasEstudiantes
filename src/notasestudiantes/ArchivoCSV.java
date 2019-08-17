@@ -51,6 +51,7 @@ public class ArchivoCSV {
            
             
     }
+            br.close();
 }       catch (IOException ex) {
             Logger.getLogger(ArchivoCSV.class.getName()).log(Level.SEVERE, null, ex);
         }
